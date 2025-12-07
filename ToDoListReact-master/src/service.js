@@ -1,7 +1,8 @@
 // src/service.js
 import axios from 'axios';
 
-const apiUrl = "http://localhost:5226/api"
+// **** התיקון: עדכון ה-URL לכתובת הציבורית ב-Render ****
+const apiUrl = "https://naama-todo-api.onrender.com/api"
 
 // *** התיקון ל-415: חובה לשלוח Content-Type ***
 axios.defaults.headers.common['Content-Type'] = 'application/json';
