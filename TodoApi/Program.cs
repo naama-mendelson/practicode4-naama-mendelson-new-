@@ -3,6 +3,19 @@ using TodoApi.Models; // ודא שזהו המרחב השמות הנכון עבו
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ********** הוספת קוד לטיפול בפורט של Render (מתחיל כאן) **********
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+{
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        // גורם לשרת להאזין לפורט ש-Render מספק (כגון 10000)
+        options.ListenAnyIP(int.Parse(port));
+    });
+}
+// ********** סוף קוד לטיפול בפורט של Render **********
+
+
 // הוספת שירותים ל-Container.
 
 // ********** 1. הוספת CORS לשירותים (Services) **********
@@ -24,6 +37,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<TodoDbContext>(options =>
 {
     // 1. קבלת מחרוזת החיבור "ToDoDB" מקובץ appsettings.json
+    // הערה: ב-Render, מחרוזת החיבור נלקחת ממשתנה הסביבה שהגדרנו: ConnectionStrings__ToDoDB
     var connectionString = builder.Configuration.GetConnectionString("ToDoDB");
 
     // 2. שימוש במחרוזת החיבור כדי להתחבר ל-MySQL
