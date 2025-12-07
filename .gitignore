@@ -1,0 +1,16 @@
+# כללי
+.DS_Store
+.vscode/
+
+# Node (עבור פרויקט ה-React)
+ToDoListReact-master/node_modules
+ToDoListReact-master/build
+ToDoListReact-master/.env
+npm-debug.log
+
+# .NET / C# (עבור פרויקט ה-API)
+TodoApi/bin/
+TodoApi/obj/
+.vs/
+*.user
+*.bak
